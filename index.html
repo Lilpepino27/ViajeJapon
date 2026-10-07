@@ -152,7 +152,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
+<script src="firebase-config.js?v=2"></script>
 <script>
 const KEY = 'ahorroJapon';
 const DEFAULTS = {
@@ -322,7 +322,8 @@ $('reset').onclick = () => {
 };
 
 /* ---------- Sincronización (Firebase) ---------- */
-const cfg = window.FIREBASE_CONFIG;
+// Acepta tanto window.FIREBASE_CONFIG como el `const firebaseConfig` que copia Firebase
+const cfg = window.FIREBASE_CONFIG || (typeof firebaseConfig !== 'undefined' ? firebaseConfig : null);
 if (!cfg || !cfg.apiKey || cfg.apiKey.startsWith('PEGA')) {
   // Sin configurar: funciona solo en este navegador
   $('app').hidden = false;
